@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {EmpleadoService} from '../../services/empleado.service';
+import {EmpleadoService} from '../services/empleado.service';
 import { NgForm } from '@angular/forms';
-import { Empleado } from 'src/app/models/empleado';
+import { Empleado } from 'src/app/estudiantes/models/empleado';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
