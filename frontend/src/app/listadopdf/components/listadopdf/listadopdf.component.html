@@ -1,1 +1,34 @@
-<p>listadopdf works!</p>
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link data-require="bootstrap-css@3.3.6" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
+  </head>
+
+  <body>
+    <h1>Download!</h1>
+    
+    <div ng-app="myApp" ng-controller="MyCtrl as vm">
+      <a>Click Me for a PDF</a>
+    </div>
+    
+    <script data-require="angularjs@1.5.8" data-semver="1.5.8" src="https://opensource.keycdn.com/angularjs/1.5.8/angular.min.js"></script>
+    <script>
+      (function(){
+        
+        var app = angular.module('myApp', [])
+      
+        .controller('MyCtrl', function($http) {
+          
+          var vm = this;
+          
+          // you should probably move the source being passed to a function
+          vm.myLink = 'http://www.html2pdf.it/?url=www.github.com&download=true&format=A4&orientation=portrait&margin=1cm';
+      
+        });
+        
+      })();
+    </script>
+  </body>
+
+</html>

@@ -1,41 +1,42 @@
 <div class="container">
     <div class="card border-light mb-3">
-        <div class="card-header"><h1>Empresas con convenio</h1></div>
+        <div class="card-header"><h1>Tutores Empresariales</h1>
+        </div>
         <div class="card-body">
-            <table  *ngIf="empresaService.empresas != 0" class="table scrollawble">
+            <table *ngIf="tutorService.tutores != 0" class="table scrollawble">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Empresa</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellidos</th>
                         <th scope="col">Direccion</th>
                         <th scope="col">Ubicacion</th>
-                        <th scope="col">Tutor Empresarial</th>
+                        <th scope="col">Semestre</th>
                         <th scope="col">Correo</th>
                         <th scope="col">Celular</th>
                         <th scope="col">Telèfono</th>
-                        <th class="pb-2" colspan="2" scope="col">
-                            <button class="btn btn-primary mb-0 col-12" (click)="openScrollableContent(longContent);resetForm(form)">Agregar +</button>
-                        </th>
-                 
+                        <th scope="col"></th>
+                        <th  scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let empresa of empresaService.empresas">
-                        <td>{{empresa.name}}</td>
-                        <td>{{empresa.direccion}}</td>
-                        <td>{{empresa.ubicacion}}</td>
-                        <td>{{empresa.tutor}}</td>
-                        <td>{{empresa.correo}}</td>
-                        <td>{{empresa.celular}}</td>
-                        <td>{{empresa.telefono}}</td>
+                    <tr *ngFor="let tutor of tutorService.tutores">
+                        <td>{{tutor.name}}</td>
+                        <td>{{tutor.apellidos}}</td>
+                        <td>{{tutor.direccion}}</td>
+                        <td>{{tutor.ubicacion}}</td>
+                        <td>{{tutor.semestre}}</td>
+                        <td>{{tutor.correo}}</td>
+                        <td>{{tutor.celular}}</td>
+                        <td>{{tutor.telefono}}</td>
                         <td>
-                            <button class="btn btn-success" type="submit" (click)="editEmpresa(empresa);openScrollableContent(longContent)">
+                            <button class="btn btn-success" type="submit" (click)="editTutor(tutor);openScrollableContent(longContent)">
                                 <i class="small material-icons">
                                     edit
                                 </i>
                             </button>
                         </td>
                         <td>
-                            <button class="btn btn-danger" type="submit" (click)="deleteEmpresa(empresa)">
+                            <button class="btn btn-danger" type="submit" (click)="deleteTutor(tutor)">
                                 <i class="small material-icons">
                                     delete
                                 </i>
@@ -44,69 +45,82 @@
                     </tr>
                 </tbody>
             </table>
+        
+        
             <ng-template #longContent let-modal>
                 <div class="modal-header">
-                    <h4 class="modal-title ">Agregar Empresa</h4>
-                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click');getEmpresas()">
+                    <h4 class="modal-title">Agregar Tutor</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click');getTutores()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form #empresaForm="ngForm" (ngSubmit)="addEmpresa(empresaForm)" >
+                    <form #tutorForm="ngForm" (ngSubmit)="addTutor(tutorForm)" >
                         <input type="hidden" name="_id" #_id="ngModel"
-                            [(ngModel)]="empresaService.seleccionarEmpresa._id">
+                            [(ngModel)]="tutorService.seleccionarTutor._id">
                         <div class="form-group">
                             <input class="form-control" type="text" name="name" #name="ngModel"
-                                [(ngModel)]="empresaService.seleccionarEmpresa.name"
-                                placeholder="Nombre de la empresa">
+                                [(ngModel)]="tutorService.seleccionarTutor.name"
+                                placeholder="ingresa nombres">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="apellidos" #apellidos="ngModel"
+                                [(ngModel)]="tutorService.seleccionarTutor.apellidos"
+                                placeholder="ingresa apellidos">
                         </div>
         
                         <div class="form-group">
                             <input class="form-control" type="text" name="direccion" #direccion="ngModel"
-                                [(ngModel)]="empresaService.seleccionarEmpresa.direccion"
-                                placeholder="ingresa la direccion">
+                                [(ngModel)]="tutorService.seleccionarTutor.direccion"
+                                placeholder="ingresa direccion">
                         </div>
         
                         <div class="form-group">
                             <div>
                                 <input type="radio" name="ubicacion" #ubicacion="ngModel"
-                                    [(ngModel)]="empresaService.seleccionarEmpresa.ubicacion" value="Centro"
+                                    [(ngModel)]="tutorService.seleccionarTutor.ubicacion" value="Centro"
                                     required>Centro
                             </div>
                             <div>
                                 <input type="radio" name="ubicacion" #ubicacion="ngModel"
-                                    [(ngModel)]="empresaService.seleccionarEmpresa.ubicacion" value="Norte"
+                                    [(ngModel)]="tutorService.seleccionarTutor.ubicacion" value="Norte"
                                     required>Norte
                             </div>
                             <div>
                                 <input type="radio" name="ubicacion" #ubicacion="ngModel"
-                                    [(ngModel)]="empresaService.seleccionarEmpresa.ubicacion" value="Sur" required>Sur
+                                    [(ngModel)]="tutorService.seleccionarTutor.ubicacion" value="Sur" required>Sur
                             </div>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="correo" #correo="ngModel"
-                                [(ngModel)]="empresaService.seleccionarEmpresa.correo"
-                                placeholder="Correo Empresarial" required>
+                                [(ngModel)]="tutorService.seleccionarTutor.correo"
+                                placeholder="Correo Electrónico" required>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="celular" #celular="ngModel"
-                                [(ngModel)]="empresaService.seleccionarEmpresa.celular" placeholder="Celular"
+                                [(ngModel)]="tutorService.seleccionarTutor.celular" placeholder="Celular"
                                 required>
                         </div>
         
                         <div class="form-group">
                             <input type="text" class="form-control" name="telefono" #telefono="ngModel"
-                                [(ngModel)]="empresaService.seleccionarEmpresa.telefono"
+                                [(ngModel)]="tutorService.seleccionarTutor.telefono"
                                 placeholder="Teléfono Convencional" required>
                         </div>
                         
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click');getEmpresas()">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" (click)="addEmpresa(empresaForm);modal.close('Close click')">Guardar</button>
+                    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click');getTutores()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" (click)="addTutor(tutorForm);modal.close('Close click')">Guardar</button>
                 </div>
             </ng-template>
+        
+            <button class="btn btn-primary mb-2 mr-2" (click)="openScrollableContent(longContent);resetForm(form)">Agregar +</button>
+        
+
         </div>
       </div>
-    </div>
+
+
+</div>

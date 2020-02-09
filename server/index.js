@@ -13,6 +13,7 @@ app.use(cors({origin:'http://localhost:4200'}));
 //rutas
 app.use('/api/estudiantes',require('./routes/estudiantes.routes'));
 app.use('/api/empresas',require('./routes/empresas.routes'));
+app.use('/api/tutores',require('./routes/tutores.routes'));
 //Iniciando servidor
 
 app.listen(app.get('port'),()=> {
