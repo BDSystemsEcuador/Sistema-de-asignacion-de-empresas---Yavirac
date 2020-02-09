@@ -1,7 +1,7 @@
 const mongoose = require ('mongoose');
 const {Schema} = mongoose;
 
-const empleadoSchema = new Schema ({
+const estudianteSchema = new Schema ({
     names:{type: String, required:true},
     apellidos:{type: String, required:false},
     direccion:{type: String, required:false},
@@ -12,4 +12,4 @@ const empleadoSchema = new Schema ({
     telefono:{type: String, required:false}
 });
 
-module.exports = mongoose.model('Empleado', empleadoSchema );
+module.exports = mongoose.model('Estudiante', estudianteSchema );
