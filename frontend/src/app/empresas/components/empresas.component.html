@@ -1,0 +1,113 @@
+<div class="container">
+
+
+    <br>
+    <table class="table scrollawble">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Empresa</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Ubicacion</th>
+                <th scope="col">Tutor Empresarial</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Celular</th>
+                <th scope="col">Telèfono</th>
+                <th scope="col"></th>
+                <th  scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let empresa of empresaService.empresas">
+                <td>{{empresa.name}}</td>
+                <td>{{empresa.direccion}}</td>
+                <td>{{empresa.ubicacion}}</td>
+                <td>{{empresa.tutor}}</td>
+                <td>{{empresa.correo}}</td>
+                <td>{{empresa.celular}}</td>
+                <td>{{empresa.telefono}}</td>
+                <td>
+                    <button class="btn btn-success" type="submit" (click)="editEmpresa(empresa);openScrollableContent(longContent)">
+                        <i class="small material-icons">
+                            edit
+                        </i>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" type="submit" (click)="deleteEmpresa(empresa)">
+                        <i class="small material-icons">
+                            delete
+                        </i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <ng-template #longContent let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Agregar Empresa</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click');getEmpresas()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form #empresaForm="ngForm" (ngSubmit)="addEmpresa(empresaForm)" >
+                <input type="hidden" name="_id" #_id="ngModel"
+                    [(ngModel)]="empresaService.seleccionarEmpresa._id">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="name" #name="ngModel"
+                        [(ngModel)]="empresaService.seleccionarEmpresa.name"
+                        placeholder="Nombre de la empresa">
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" type="text" name="direccion" #direccion="ngModel"
+                        [(ngModel)]="empresaService.seleccionarEmpresa.direccion"
+                        placeholder="ingresa la direccion">
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <input type="radio" name="ubicacion" #ubicacion="ngModel"
+                            [(ngModel)]="empresaService.seleccionarEmpresa.ubicacion" value="Centro"
+                            required>Centro
+                    </div>
+                    <div>
+                        <input type="radio" name="ubicacion" #ubicacion="ngModel"
+                            [(ngModel)]="empresaService.seleccionarEmpresa.ubicacion" value="Norte"
+                            required>Norte
+                    </div>
+                    <div>
+                        <input type="radio" name="ubicacion" #ubicacion="ngModel"
+                            [(ngModel)]="empresaService.seleccionarEmpresa.ubicacion" value="Sur" required>Sur
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="correo" #correo="ngModel"
+                        [(ngModel)]="empresaService.seleccionarEmpresa.correo"
+                        placeholder="Correo Empresarial" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="celular" #celular="ngModel"
+                        [(ngModel)]="empresaService.seleccionarEmpresa.celular" placeholder="Celular"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="telefono" #telefono="ngModel"
+                        [(ngModel)]="empresaService.seleccionarEmpresa.telefono"
+                        placeholder="Teléfono Convencional" required>
+                </div>
+                
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click');getEmpresas()">Cancelar</button>
+            <button type="submit" class="btn btn-primary" (click)="addEmpresa(empresaForm);modal.close('Close click')">Guardar</button>
+        </div>
+    </ng-template>
+
+    <button class="btn btn-primary mb-2 mr-2" (click)="openScrollableContent(longContent);resetForm(form)">Agregar +</button>
+
+</div>
