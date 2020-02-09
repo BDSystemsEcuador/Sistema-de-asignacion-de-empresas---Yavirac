@@ -1,14 +1,23 @@
 export class Empleado {
-    constructor(_id='',name='',position='', office='',salary=0){
+    constructor(_id='',names='',apellidos='',direccion='',ubicacion='', semestre='',correo='',celular='',telefono=''){
         this._id=_id;
-        this.name=name;
-        this.position=position;
-        this.office=office;
-        this.salary=salary;
+        this.names=names;
+        this.apellidos=apellidos;
+        this.direccion=direccion;
+        this.ubicacion=ubicacion;
+        this.semestre=semestre;
+        this.correo=correo;
+        this.celular=celular;
+        this.telefono=telefono;
     }
     _id:string;
-    name:string;
-    position:string;
-    office:string;
-    salary:number;
+    names:string;
+    apellidos: string;
+    direccion:string;
+    ubicacion:string;
+    semestre:string;
+    correo:string;
+    celular:string;
+    telefono:string;
+
 }

@@ -3,20 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { EmpleadosComponent } from './components/empleados/empleados.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
-    EmpleadosComponent
+    EmpleadosComponent,
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,]
 })
 export class AppModule { }

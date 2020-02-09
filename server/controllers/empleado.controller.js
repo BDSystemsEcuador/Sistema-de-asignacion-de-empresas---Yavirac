@@ -11,23 +11,32 @@ empleadoCtrl.getEmpleado= async (req,res)=>{
     res.json(empleado);
 };
 empleadoCtrl.putEmpleado= async (req,res, nexts)=>{
-    const empleado = {
-        name:req.body.name,
-        position: req.body.position,
-        office: req.body.office,
-        salary: req.body.salary
+    const empleado = await{
+        names:req.body.names,
+        apellidos: req.body.apellidos,
+        direccion: req.body.direccion,
+        ubicacion: req.body.ubicacion,
+        semestre: req.body.semestre,
+        correo: req.body.correo,
+        celular:req.body.celular,
+        telefono:req.body.telefono
     }
     await Empleado.findByIdAndUpdate(req.params.id, {$set: empleado},{new: true})
     res.json({status:'empleado actualizado'})
 };
 
 empleadoCtrl.createEmpleado = async (req,res)=>{
-    const empleado= new Empleado(
+    const empleado= await new Empleado(
         {
-            name: req.body.name,
-            position: req.body.position,
-            office:req.body.office,
-            salary:req.body.salary
+            names: req.body.names,
+            apellidos: req.body.apellidos,
+            direccion: req.body.direccion,
+            ubicacion: req.body.ubicacion,
+            semestre: req.body.semestre,
+            correo: req.body.correo,
+            celular:req.body.celular,
+            telefono:req.body.telefono
+
         }
     );
     await empleado.save();

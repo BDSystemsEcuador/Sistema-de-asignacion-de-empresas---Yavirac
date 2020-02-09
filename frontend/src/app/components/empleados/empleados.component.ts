@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {EmpleadoService} from '../../services/empleado.service';
 import { NgForm } from '@angular/forms';
 import { Empleado } from 'src/app/models/empleado';
-declare var M: any;
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-empleados',
   templateUrl: './empleados.component.html',
@@ -10,11 +11,14 @@ declare var M: any;
   providers:[EmpleadoService]
 })
 export class EmpleadosComponent implements OnInit {
-
-  constructor(private empleadoService:EmpleadoService) { }
+  closeResult: string;
+  constructor(private empleadoService:EmpleadoService,private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getEmpleados();
+  }
+  openScrollableContent(longContent) {
+    this.modalService.open(longContent, { scrollable: true });
   }
   addEmpleado(form:NgForm){
 
@@ -22,14 +26,12 @@ export class EmpleadosComponent implements OnInit {
       this.empleadoService.putEmpleado(form.value).
       subscribe (res => {
         this.resetForm(form);
-        M.toast({html: 'actualizado correctamente'});
         this.getEmpleados();
       }); 
     } else {
       this.empleadoService.addEmpleado(form.value).
       subscribe(res => {
         this.resetForm(form);
-        M.toast({html: 'guardado correctamente'});
         this.getEmpleados();
       });
     }
@@ -57,7 +59,6 @@ deleteEmpleado(empleado: Empleado){
     this.empleadoService.deleteEmpleado(empleado)
       .subscribe(res => {
         this.getEmpleados();
-        M.toast({html: 'Deleted Succesfully'});
       });
   }
 
