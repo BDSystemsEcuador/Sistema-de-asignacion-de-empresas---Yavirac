@@ -11,7 +11,7 @@ app.use(express.json());//entiende los datos del servidor
 app.use(cors({origin:'http://localhost:4200'}));
 
 //rutas
-app.use('/api/empleados',require('./routes/empleados.routes'));
+app.use('/api/estudiantes',require('./routes/estudiantes.routes'));
 //Iniciando servidor
 
 app.listen(app.get('port'),()=> {

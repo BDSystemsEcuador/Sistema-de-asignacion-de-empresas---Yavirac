@@ -1,4 +1,4 @@
-export class Empleado {
+export class Estudiante {
     constructor(_id='',names='',apellidos='',direccion='',ubicacion='', semestre='',correo='',celular='',telefono=''){
         this._id=_id;
         this.names=names;

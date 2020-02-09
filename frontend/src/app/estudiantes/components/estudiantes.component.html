@@ -2,7 +2,7 @@
 
 
     <br>
-    <table class="table">
+    <table class="table scrollawble">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Nombres</th>
@@ -14,29 +14,29 @@
                 <th scope="col">Celular</th>
                 <th scope="col">Telèfono</th>
                 <th scope="col"></th>
-                <th scope="col"></th>
+                <th  scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let empleado of empleadoService.empleados">
-                <td>{{empleado.names}}</td>
-                <td>{{empleado.apellidos}}</td>
-                <td>{{empleado.direccion}}</td>
-                <td>{{empleado.ubicacion}}</td>
-                <td>{{empleado.semestre}}</td>
-                <td>{{empleado.correo}}</td>
-                <td>{{empleado.celular}}</td>
-                <td>{{empleado.telefono}}</td>
+            <tr *ngFor="let estudiante of estudianteService.estudiantes">
+                <td>{{estudiante.names}}</td>
+                <td>{{estudiante.apellidos}}</td>
+                <td>{{estudiante.direccion}}</td>
+                <td>{{estudiante.ubicacion}}</td>
+                <td>{{estudiante.semestre}}</td>
+                <td>{{estudiante.correo}}</td>
+                <td>{{estudiante.celular}}</td>
+                <td>{{estudiante.telefono}}</td>
                 <td>
-                    <button class="btn btn-success" type="submit" (click)="editEmpleado(empleado);openScrollableContent(longContent)">
-                        <i class="material-icons">
+                    <button class="btn btn-success" type="submit" (click)="editEstudiante(estudiante);openScrollableContent(longContent)">
+                        <i class="small material-icons">
                             edit
                         </i>
                     </button>
                 </td>
                 <td>
-                    <button class="btn btn-danger" type="submit" (click)="deleteEmpleado(empleado)">
-                        <i class="material-icons">
+                    <button class="btn btn-danger" type="submit" (click)="deleteEstudiante(estudiante)">
+                        <i class="small material-icons">
                             delete
                         </i>
                     </button>
@@ -49,45 +49,45 @@
     <ng-template #longContent let-modal>
         <div class="modal-header">
             <h4 class="modal-title">Agregar Estudiante</h4>
-            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click');getEmpleados()">
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click');getEstudiantes()">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            <form #empleadoForm="ngForm" (ngSubmit)="addEmpleado(empleadoForm)" >
+            <form #estudianteForm="ngForm" (ngSubmit)="addEstudiante(estudianteForm)" >
                 <input type="hidden" name="_id" #_id="ngModel"
-                    [(ngModel)]="empleadoService.seleccionarEmpleado._id">
+                    [(ngModel)]="estudianteService.seleccionarEstudiante._id">
                 <div class="form-group">
                     <input class="form-control" type="text" name="names" #name="ngModel"
-                        [(ngModel)]="empleadoService.seleccionarEmpleado.names"
+                        [(ngModel)]="estudianteService.seleccionarEstudiante.names"
                         placeholder="ingresa sus nombres">
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="text" name="apellidos" #apellidos="ngModel"
-                        [(ngModel)]="empleadoService.seleccionarEmpleado.apellidos"
+                        [(ngModel)]="estudianteService.seleccionarEstudiante.apellidos"
                         placeholder="ingresa sus apellidos">
                 </div>
 
                 <div class="form-group">
                     <input class="form-control" type="text" name="direccion" #direccion="ngModel"
-                        [(ngModel)]="empleadoService.seleccionarEmpleado.direccion"
+                        [(ngModel)]="estudianteService.seleccionarEstudiante.direccion"
                         placeholder="ingresa su direccion">
                 </div>
 
                 <div class="form-group">
                     <div>
                         <input type="radio" name="ubicacion" #ubicacion="ngModel"
-                            [(ngModel)]="empleadoService.seleccionarEmpleado.ubicacion" value="Centro"
+                            [(ngModel)]="estudianteService.seleccionarEstudiante.ubicacion" value="Centro"
                             required>Centro
                     </div>
                     <div>
                         <input type="radio" name="ubicacion" #ubicacion="ngModel"
-                            [(ngModel)]="empleadoService.seleccionarEmpleado.ubicacion" value="Norte"
+                            [(ngModel)]="estudianteService.seleccionarEstudiante.ubicacion" value="Norte"
                             required>Norte
                     </div>
                     <div>
                         <input type="radio" name="ubicacion" #ubicacion="ngModel"
-                            [(ngModel)]="empleadoService.seleccionarEmpleado.ubicacion" value="Sur" required>Sur
+                            [(ngModel)]="estudianteService.seleccionarEstudiante.ubicacion" value="Sur" required>Sur
                     </div>
                 </div>
                 <div class="form-group">
@@ -95,49 +95,49 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <input type="radio" name="semestre" #semestre="ngModel"
-                                [(ngModel)]="empleadoService.seleccionarEmpleado.semestre" value="1" required>1
+                                [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="1" required>1
                         </div>
                         <div class="col-sm-2">
                             <input type="radio" name="semestre" #semestre="ngModel"
-                                [(ngModel)]="empleadoService.seleccionarEmpleado.semestre" value="2" required>2
+                                [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="2" required>2
                         </div>
                         <div class="col-sm-2">
                             <input type="radio" name="semestre" #semestre="ngModel"
-                                [(ngModel)]="empleadoService.seleccionarEmpleado.semestre" value="3" required>3
+                                [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="3" required>3
                         </div>
                         <div class="col-sm-2">
                             <input type="radio" name="semestre" #semestre="ngModel"
-                                [(ngModel)]="empleadoService.seleccionarEmpleado.semestre" value="4" required>4
+                                [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="4" required>4
                         </div>
                         <div class="col-sm-2">
                             <input type="radio" name="semestre" #semestre="ngModel"
-                                [(ngModel)]="empleadoService.seleccionarEmpleado.semestre" value="5" required>5
+                                [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="5" required>5
                         </div>
                     </div>
 
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="correo" #correo="ngModel"
-                        [(ngModel)]="empleadoService.seleccionarEmpleado.correo"
+                        [(ngModel)]="estudianteService.seleccionarEstudiante.correo"
                         placeholder="Correo Electrónico" required>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="celular" #celular="ngModel"
-                        [(ngModel)]="empleadoService.seleccionarEmpleado.celular" placeholder="Celular"
+                        [(ngModel)]="estudianteService.seleccionarEstudiante.celular" placeholder="Celular"
                         required>
                 </div>
 
                 <div class="form-group">
                     <input type="text" class="form-control" name="telefono" #telefono="ngModel"
-                        [(ngModel)]="empleadoService.seleccionarEmpleado.telefono"
+                        [(ngModel)]="estudianteService.seleccionarEstudiante.telefono"
                         placeholder="Teléfono Convencional" required>
                 </div>
                 
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click');getEmpleados()">Cancelar</button>
-            <button type="submit" class="btn btn-primary" (click)="addEmpleado(empleadoForm);modal.close('Close click')">Guardar</button>
+            <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click');getEstudiantes()">Cancelar</button>
+            <button type="submit" class="btn btn-primary" (click)="addEstudiante(estudianteForm);modal.close('Close click')">Guardar</button>
         </div>
     </ng-template>
 

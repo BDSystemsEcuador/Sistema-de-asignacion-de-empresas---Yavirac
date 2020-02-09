@@ -1,31 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Empleado } from '../models/empleado';
+import { Estudiante } from '../models/estudiante';
 @Injectable({
   providedIn: 'root'
 })
-export class EmpleadoService {
+export class EstudianteService {
 
-  seleccionarEmpleado: Empleado;
-  empleados: Empleado[];
-  readonly URL_API="http://localhost:3000/api/empleados";
+  seleccionarEstudiante: Estudiante;
+  estudiantes: Estudiante[];
+  readonly URL_API="http://localhost:3000/api/estudiantes";
   constructor(private http: HttpClient) {
 
-    this.seleccionarEmpleado = new Empleado();
+    this.seleccionarEstudiante = new Estudiante();
     
    }
 
-  getEmpleados(){
+  getEstudiantes(){
     return this.http.get(this.URL_API);
   }
-  addEmpleado(Employee: Empleado){
+  addEstudiante(Employee: Estudiante){
     return this.http.post(this.URL_API,Employee);
   }
-  putEmpleado(Employee: Empleado){
+  putEstudiante(Employee: Estudiante){
     return this.http.put(this.URL_API + `/${Employee._id}`,
     Employee);
   }
-  deleteEmpleado(Employee: Empleado){
+  deleteEstudiante(Employee: Estudiante){
     return this.http.delete(this.URL_API + `/${Employee._id}`);
   }
 }

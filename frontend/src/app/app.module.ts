@@ -14,11 +14,11 @@ import { ListadopdfComponent } from './listadopdf/components/listadopdf/listadop
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { InicioComponent } from './inicio/inicio.component';
-import { EmpleadosComponent } from "./estudiantes/components/empleados.component";
+import { EstudiantesComponent } from "./estudiantes/components/estudiantes.component";
 @NgModule({
   declarations: [
     AppComponent,
-    EmpleadosComponent,
+    EstudiantesComponent,
     NavbarComponent,
     FooterComponent,
     EmpresasComponent,
