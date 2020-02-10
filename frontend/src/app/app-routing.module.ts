@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { InicioComponent } from './inicio/inicio.component';
-import { TutoresComponent } from './tutores/components/tutores.component';
-import { EmpresasComponent } from './empresas/components/empresas.component';
-import { AsignacionComponent } from './asignacion/components/asignacion.component';
-import { EstudiantesComponent } from './estudiantes/components/estudiantes.component';
-import { ListadopdfComponent } from './listadopdf/components/listadopdf/listadopdf.component';
+import { TutoresComponent } from './tutores/tutores.component';
+import { EmpresasComponent } from './empresas/empresas.component';
+import { AsignacionComponent } from './asignacion/asignacion.component';
+import { EstudiantesComponent } from './estudiantes/estudiantes.component';
+import { ListadopdfComponent } from './listadopdf/listadopdf.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -17,8 +17,7 @@ const routes: Routes = [
   { path: 'empresas', component: EmpresasComponent},
   { path: 'asignacion', component: AsignacionComponent},
   { path: 'reporte', component: ListadopdfComponent},
-  { path: '**', redirectTo: 'not-found'},
-  {path: 'not-found', loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule)},
+  { path: '**', redirectTo: 'login'},
   { path: '', redirectTo: '/login', pathMatch: 'prefix' },
 
   ];
