@@ -11,6 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   providers:[EstudianteService]
 })
 export class EstudiantesComponent implements OnInit {
+  
   closeResult: string;
   constructor(private estudianteService:EstudianteService,private modalService: NgbModal) { }
 
