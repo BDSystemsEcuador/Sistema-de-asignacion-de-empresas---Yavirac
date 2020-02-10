@@ -13,7 +13,7 @@
                         <th scope="col">Celular</th>
                         <th scope="col">Telèfono</th>
                         <th class="pb-2" colspan="2" scope="col">
-                            <button class="btn btn-primary mb-0 col-12" (click)="openScrollableContent(longContent);resetForm(form)">Agregar +</button>
+                            
                         </th>
                  
                     </tr>
@@ -43,7 +43,9 @@
                         </td>
                     </tr>
                 </tbody>
+
             </table>
+
             <ng-template #longContent let-modal>
                 <div class="modal-header">
                     <h4 class="modal-title ">Agregar Empresa</h4>
@@ -107,6 +109,8 @@
                     <button type="submit" class="btn btn-primary" (click)="addEmpresa(empresaForm);modal.close('Close click')">Guardar</button>
                 </div>
             </ng-template>
+            <button class="btn btn-primary mb-0" (click)="openScrollableContent(longContent);resetForm(form)">Agregar +</button>
+
         </div>
       </div>
     </div>

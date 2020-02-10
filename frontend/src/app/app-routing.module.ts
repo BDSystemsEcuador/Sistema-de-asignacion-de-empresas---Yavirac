@@ -17,8 +17,9 @@ const routes: Routes = [
   { path: 'empresas', component: EmpresasComponent},
   { path: 'asignacion', component: AsignacionComponent},
   { path: 'reporte', component: ListadopdfComponent},
-  { path: '**', redirectTo: '/login', pathMatch: 'full' },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'not-found'},
+  {path: 'not-found', loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule)},
+  { path: '', redirectTo: '/login', pathMatch: 'prefix' },
 
   ];
 
