@@ -30,6 +30,7 @@ export class AsignacionComponent implements OnInit {
       console.log(res);
     })
   }
+
   addEstudiante(form:NgForm){
 
     if(form.value._id){

@@ -1,5 +1,5 @@
 export class Empresa {
-    constructor(_id='',name='',direccion='',ubicacion='',correo='',celular='',telefono=''){
+    constructor(_id='',name='',direccion='',ubicacion='',correo='',celular='',telefono='',tutor=''){
         this._id=_id;
         this.name=name;
         this.direccion=direccion;
@@ -7,6 +7,7 @@ export class Empresa {
         this.correo=correo;
         this.celular=celular;
         this.telefono=telefono;
+        this.tutor=tutor;
     }
     _id:string;
     name:string;
@@ -15,5 +16,5 @@ export class Empresa {
     correo:string;
     celular:string;
     telefono:string;
-
+    tutor:string;
 }

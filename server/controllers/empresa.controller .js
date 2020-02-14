@@ -17,7 +17,8 @@ empresaCtrl.putEmpresa= async (req,res, nexts)=>{
         ubicacion: req.body.ubicacion,
         correo: req.body.correo,
         celular:req.body.celular,
-        telefono:req.body.telefono
+        telefono:req.body.telefono,
+        tutor:req.body.tutor
     }
     await Empresa.findByIdAndUpdate(req.params.id, {$set: empresa},{new: true})
     res.json({status:'empresa actualizado'})
@@ -31,7 +32,8 @@ empresaCtrl.createEmpresa = async (req,res)=>{
             ubicacion: req.body.ubicacion,
             correo: req.body.correo,
             celular:req.body.celular,
-            telefono:req.body.telefono
+            telefono:req.body.telefono,
+            tutor:req.body.tutor
 
         }
     );

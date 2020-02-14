@@ -1,232 +1,182 @@
-
-    <div class="card border-light mb-3">
-        <div class="card-header">    <h1>Asignación de Empresas</h1>
-        </div>
-        <div class="card-body">
-            <div class="card-header">    <H3>Estudiantes sin Empresa:</H3>
-
-            </div>
- <table class="table table-striped">
-  
-            <thead>
-            <tr>
-                <th>Apellidos y Nombres</th>
-                <th>Semestre</th>
-                <th>Asignar</th>
-                
-            </tr>
-            </thead>
-
-                <tr  *ngFor="let estudiante of estudianteService.estudiantes" >
-                    <td *ngIf="estudiante.empresa == 'Sin empresa'">{{estudiante.names}}</td>
-                    <td *ngIf="estudiante.empresa == 'Sin empresa'">{{estudiante.semestre}}</td>
-                    <td *ngIf="estudiante.empresa == 'Sin empresa'">{{estudiante.empresa}}</td>
-                    <td *ngIf="estudiante.empresa == 'Sin empresa'"><button class="btn btn-success" type="submit" (click)="editEstudiante(estudiante);openScrollableContent(longContent)">
-                        <i class="small material-icons">
-                            add
-                        </i>
-                    </button></td>
-            </tr>
-            </table>
-        </div>
-        <div class="card-body">
-            <div class="card-header">   <h3>Empresas</h3>
-            </div>
-            <table class="table table-striped">
-          
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Pasantes Asignados</th>
-                    <th>Pasantes Requeridos</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tr>
-                    <td>1</td>
-                    <td>Empresa Eléctrica</td>
-                    <td>10</td>
-                    <td>5 <button class="btn btn-primary">Editar</button></td>
-    
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>ESPE</td>
-                    <td>5</td>
-                    <td>2 <button class="btn btn-primary">Editar</button></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>LinkedIn</td>
-                    <td>6</td>
-                    <td>2 <button class="btn btn-primary">Editar</button></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>GitCode</td>
-                    <td>10</td>
-                    <td>2 <button class="btn btn-primary">Editar</button></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>SystemsHD</td>
-                    <td>2</td>
-                    <td>2 <button class="btn btn-primary">Editar</button></td>
-                </tr>
-                </table>
-        </div>
-        <div class="card-body">
-            <div class="card-header">    <H3>Estudiantes asignados</H3>
-            </div>
-            <table class="table table-striped">
-  
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Apellidos y Nombres</th>
-                    <th>Nivel</th>
-                    
-                </tr>
-                </thead>
-                <tr>
-                    <td>1</td>
-                    <td>Andrade Alarcón Daniel Alexander</td>
-                    <td>2</td>
-                    <td><button class="btn btn-primary">-</button></td>
-    
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Amaya Salvador Arturo Ramiro</td>
-                    <td>5</td>
-                    <td><button class="btn btn-primary">-</button></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Angulo Valladares Martha Concepción</td>
-                    <td>1</td>
-                    <td><button class="btn btn-primary">-</button></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Argumosa López Rosalia Socorro</td>
-                    <td>5</td>
-                    <td><button class="btn btn-primary">-</button></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Alarcón López Gerardo Genaro</td>
-                    <td>2</td>
-                    <td><button class="btn btn-primary">-</button></td>
-                </tr>
-                </table>
-                        
-            <ng-template #longContent let-modal>
-                <div class="modal-header">
-                    <h4 class="form-control" type="text" class="modal-title">El estudiante vive en el {{estudianteService.seleccionarEstudiante.ubicacion}}</h4>
-                    <br>
-                    
-                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click');getEstudiantes()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<div class="card border-light mb-3">
+    <div class="card-header">
+        <h1>Asignación de Empresas</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card-body">
+                <div class="card-header">
+                    <H3>Estudiantes sin Empresa:</H3>
+        
                 </div>
-                <div class="modal-body">
-                    <form #estudianteForm="ngForm" (ngSubmit)="addEstudiante(estudianteForm)">
-                        <input type="hidden" name="_id" #_id="ngModel"
-                            [(ngModel)]="estudianteService.seleccionarEstudiante._id">
-                        <div class="form-group">
-                            <input class="form-control" type="hidden" name="names" #name="ngModel"
-                                [(ngModel)]="estudianteService.seleccionarEstudiante.names"
-                                placeholder="ingresa sus nombres">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="hidden" name="apellidos" #apellidos="ngModel"
-                                [(ngModel)]="estudianteService.seleccionarEstudiante.apellidos"
-                                placeholder="ingresa sus apellidos">
-                        </div>
-    
-                        <div class="form-group">
-                            <input class="form-control" type="hidden" name="direccion" #direccion="ngModel"
-                                [(ngModel)]="estudianteService.seleccionarEstudiante.direccion"
-                                placeholder="ingresa su direccion">
-                        </div>
-    
-                        <div class="form-group">
-                            <div>
-                                <input type="hidden" name="ubicacion" #ubicacion="ngModel"
-                                    [(ngModel)]="estudianteService.seleccionarEstudiante.ubicacion" value="Centro"
+                <table class="table table-striped">
+        
+                    <thead>
+                        <tr>
+                            <th>Apellidos y Nombres</th>
+                            <th>Semestre</th>
+                            <th>Empresa</th>
+        
+                        </tr>
+                    </thead>
+        
+                    <tr *ngFor="let estudiante of estudianteService.estudiantes">
+                        <td *ngIf="estudiante.empresa == 'Sin empresa'">{{estudiante.names}}</td>
+                        <td *ngIf="estudiante.empresa == 'Sin empresa'">{{estudiante.semestre}}</td>
+                        <td *ngIf="estudiante.empresa == 'Sin empresa'">{{estudiante.empresa}}</td>
+                        <td *ngIf="estudiante.empresa == 'Sin empresa'"><button class="btn btn-success" type="submit"
+                                (click)="editEstudiante(estudiante);openScrollableContent(longContent)">
+                                <i class="small material-icons">
+                                    add
+                                </i>
+                            </button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card-body">
+                <div class="card-header">
+                    <H3>Estudiantes asignados</H3>
+                </div>
+                <table class="table table-striped">
+        
+                    <thead>
+                        <tr>
+                            <th>Apellidos y Nombres</th>
+                            <th>Nivel</th>
+                            <th>Empresa</th>
+                            <th>Cambiar empresa</th>
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let estudiante of estudianteService.estudiantes">
+                        <td *ngIf="estudiante.empresa != 'Sin empresa'">{{estudiante.names}}</td>
+                        <td *ngIf="estudiante.empresa != 'Sin empresa'">{{estudiante.semestre}}</td>
+                        <td *ngIf="estudiante.empresa != 'Sin empresa'">{{estudiante.empresa}}</td>
+                        <td *ngIf="estudiante.empresa != 'Sin empresa'"><button class="btn btn-success" type="submit"
+                                (click)="editEstudiante(estudiante);openScrollableContent(longContent)">
+                                <i class="small material-icons">
+                                    edit
+                                </i>
+                            </button></td>
+                    </tr>
+                </table>
+        
+                <ng-template #longContent let-modal>
+                    <div class="modal-header">
+                        <h4 class="form-control" type="text" class="modal-title">Ubicación del Estudiante: 
+                            {{estudianteService.seleccionarEstudiante.ubicacion}}</h4>
+                        <br>
+        
+                        <button type="button" class="close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click');getEstudiantes()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form #estudianteForm="ngForm" (ngSubmit)="addEstudiante(estudianteForm)">
+                            <p>Las empresas cercanas al estudiante son:</p>
+                            <input type="hidden" name="_id" #_id="ngModel"
+                                [(ngModel)]="estudianteService.seleccionarEstudiante._id">
+                            <div class="form-group">
+                                <input class="form-control" type="hidden" name="names" #name="ngModel"
+                                    [(ngModel)]="estudianteService.seleccionarEstudiante.names"
+                                    placeholder="ingresa sus nombres">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="hidden" name="apellidos" #apellidos="ngModel"
+                                    [(ngModel)]="estudianteService.seleccionarEstudiante.apellidos"
+                                    placeholder="ingresa sus apellidos">
+                            </div>
+        
+                            <div class="form-group">
+                                <input class="form-control" type="hidden" name="direccion" #direccion="ngModel"
+                                    [(ngModel)]="estudianteService.seleccionarEstudiante.direccion"
+                                    placeholder="ingresa su direccion">
+                            </div>
+        
+                            <div class="form-group">
+                                <div>
+                                    <input type="hidden" name="ubicacion" #ubicacion="ngModel"
+                                        [(ngModel)]="estudianteService.seleccionarEstudiante.ubicacion" value="Centro" required>
+                                </div>
+                                <div>
+                                    <input type="hidden" name="ubicacion" #ubicacion="ngModel"
+                                        [(ngModel)]="estudianteService.seleccionarEstudiante.ubicacion" value="Norte" required>
+                                </div>
+                                <div>
+                                    <input type="hidden" name="ubicacion" #ubicacion="ngModel"
+                                        [(ngModel)]="estudianteService.seleccionarEstudiante.ubicacion" value="Sur" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+        
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <input type="hidden" name="semestre" #semestre="ngModel"
+                                            [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="1" required>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="hidden" name="semestre" #semestre="ngModel"
+                                            [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="2" required>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="hidden" name="semestre" #semestre="ngModel"
+                                            [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="3" required>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="hidden" name="semestre" #semestre="ngModel"
+                                            [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="4" required>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="hidden" name="semestre" #semestre="ngModel"
+                                            [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="5" required>
+                                    </div>
+                                </div>
+        
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="correo" #correo="ngModel"
+                                    [(ngModel)]="estudianteService.seleccionarEstudiante.correo"
+                                    placeholder="Correo Electrónico" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="celular" #celular="ngModel"
+                                    [(ngModel)]="estudianteService.seleccionarEstudiante.celular" placeholder="Celular"
                                     required>
                             </div>
-                            <div>
-                                <input type="hidden" name="ubicacion" #ubicacion="ngModel"
-                                    [(ngModel)]="estudianteService.seleccionarEstudiante.ubicacion" value="Norte"
-                                    required>
+        
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="telefono" #telefono="ngModel"
+                                    [(ngModel)]="estudianteService.seleccionarEstudiante.telefono"
+                                    placeholder="Teléfono Convencional" required>
                             </div>
-                            <div>
-                                <input type="hidden" name="ubicacion" #ubicacion="ngModel"
-                                    [(ngModel)]="estudianteService.seleccionarEstudiante.ubicacion" value="Sur" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                   
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <input type="hidden" name="semestre" #semestre="ngModel"
-                                        [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="1" required>
-                                </div>
-                                <div class="col-sm-2">
-                                    <input type="hidden" name="semestre" #semestre="ngModel"
-                                        [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="2" required>
-                                </div>
-                                <div class="col-sm-2">
-                                    <input type="hidden" name="semestre" #semestre="ngModel"
-                                        [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="3" required>
-                                </div>
-                                <div class="col-sm-2">
-                                    <input type="hidden" name="semestre" #semestre="ngModel"
-                                        [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="4" required>
-                                </div>
-                                <div class="col-sm-2">
-                                    <input type="hidden" name="semestre" #semestre="ngModel"
-                                        [(ngModel)]="estudianteService.seleccionarEstudiante.semestre" value="5" required>
-                                </div>
-                            </div>
-    
-                        </div>
-                        <div class="form-group">
-                            <input type="hidden" class="form-control" name="correo" #correo="ngModel"
-                                [(ngModel)]="estudianteService.seleccionarEstudiante.correo"
-                                placeholder="Correo Electrónico" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="hidden" class="form-control" name="celular" #celular="ngModel"
-                                [(ngModel)]="estudianteService.seleccionarEstudiante.celular" placeholder="Celular"
-                                required>
-                        </div>
-    
-                        <div class="form-group">
-                            <input type="hidden" class="form-control" name="telefono" #telefono="ngModel"
-                                [(ngModel)]="estudianteService.seleccionarEstudiante.telefono"
-                                placeholder="Teléfono Convencional" required>
-                        </div>
-    
-                        <select class="browser-default custom-select" name="empresa" #empresa="ngModel"
-                            [(ngModel)]="estudianteService.seleccionarEstudiante.empresa">
-
-                            <ng-container *ngFor="let empresa of empresaService.empresas">
-                                <option *ngIf="empresa.ubicacion == estudianteService.seleccionarEstudiante.ubicacion" value={{empresa.name}} >
-                                    {{empresa.name}}
-                                </option>
-                              </ng-container>
-                        </select>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click');getEstudiantes()">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" (click)="addEstudiante(estudianteForm);modal.close('Close click')">Guardar</button>
-                </div>
-            </ng-template>        
+        
+                            <select class="browser-default custom-select" name="empresa" #empresa="ngModel"
+                                [(ngModel)]="estudianteService.seleccionarEstudiante.empresa">
+        
+                                <ng-container *ngFor="let empresa of empresaService.empresas">
+                                    <option *ngIf="empresa.ubicacion == estudianteService.seleccionarEstudiante.ubicacion"
+                                        value={{empresa.name}}>
+                                        {{empresa.name}}
+                                    </option>
+                                </ng-container>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            (click)="modal.dismiss('Cross click');getEstudiantes()">Cancelar</button>
+                        <button type="submit" class="btn btn-primary"
+                            (click)="addEstudiante(estudianteForm);modal.close('Close click')">Guardar</button>
+                    </div>
+                </ng-template>
+            </div>
         </div>
+    </div>
+    
 
-      </div>
+    
+
+
+</div>
