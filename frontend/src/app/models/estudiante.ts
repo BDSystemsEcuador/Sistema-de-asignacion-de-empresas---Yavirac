@@ -1,5 +1,5 @@
 export class Estudiante {
-    constructor(_id='',names='',apellidos='',direccion='',ubicacion='', semestre='',correo='',celular='',telefono=''){
+    constructor(_id='',names='',apellidos='',direccion='',ubicacion='Sin Ubicación', semestre='',correo='',celular='',telefono='',empresa='Sin empresa'){
         this._id=_id;
         this.names=names;
         this.apellidos=apellidos;
@@ -9,6 +9,7 @@ export class Estudiante {
         this.correo=correo;
         this.celular=celular;
         this.telefono=telefono;
+        this.empresa=empresa;
     }
     _id:string;
     names:string;
@@ -19,5 +20,5 @@ export class Estudiante {
     correo:string;
     celular:string;
     telefono:string;
-
+    empresa:string;
 }

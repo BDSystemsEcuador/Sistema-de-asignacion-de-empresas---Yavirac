@@ -10,7 +10,7 @@ import { Empresa } from '../models/empresa';
   selector: 'app-asignacion',
   templateUrl: './asignacion.component.html',
   styleUrls: ['./asignacion.component.css'],
-  providers:[EstudianteService]
+  providers:[EstudianteService, EmpresaService]
 })
 export class AsignacionComponent implements OnInit {
   closeResult: string;
@@ -71,4 +71,6 @@ deleteEstudiante(estudiante: Estudiante){
         this.getEstudiantes();
       });
   }
-}}
+
+}
+}

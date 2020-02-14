@@ -19,11 +19,15 @@ estudianteCtrl.putEstudiante= async (req,res, nexts)=>{
         semestre: req.body.semestre,
         correo: req.body.correo,
         celular:req.body.celular,
-        telefono:req.body.telefono
+        telefono:req.body.telefono,
+        empresa:req.body.empresa
     }
+
+    
     await Estudiante.findByIdAndUpdate(req.params.id, {$set: estudiante},{new: true})
     res.json({status:'estudiante actualizado'})
 };
+
 
 estudianteCtrl.createEstudiante = async (req,res)=>{
     const estudiante= await new Estudiante(
@@ -35,7 +39,8 @@ estudianteCtrl.createEstudiante = async (req,res)=>{
             semestre: req.body.semestre,
             correo: req.body.correo,
             celular:req.body.celular,
-            telefono:req.body.telefono
+            telefono:req.body.telefono,
+            empresa:req.body.empresa
 
         }
     );

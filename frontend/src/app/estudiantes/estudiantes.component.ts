@@ -3,20 +3,29 @@ import {EstudianteService} from '../estudiantes/estudiante.service';
 import { NgForm } from '@angular/forms';
 import { Estudiante } from '../models/estudiante';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import {EmpresaService} from '../empresas/empresa.service';
+import { Empresa } from '../models/empresa';
 @Component({
   selector: 'app-estudiantes',
   templateUrl: './estudiantes.component.html',
   styleUrls: ['./estudiantes.component.css'],
-  providers:[EstudianteService]
+  providers:[EstudianteService, EmpresaService]
 })
 export class EstudiantesComponent implements OnInit {
   
   closeResult: string;
-  constructor(private estudianteService:EstudianteService,private modalService: NgbModal) { }
+  constructor(private empresaService:EmpresaService,private estudianteService:EstudianteService,private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getEstudiantes();
+    this.getEmpresas();
+  }
+  getEmpresas(){
+    this.empresaService.getEmpresas().
+    subscribe(res=>{
+      this.empresaService.empresas = res as Empresa[];
+      console.log(res);
+    })
   }
   openScrollableContent(longContent) {
     this.modalService.open(longContent, { scrollable: true });
