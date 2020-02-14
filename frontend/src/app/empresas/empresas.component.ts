@@ -48,13 +48,7 @@ export class EmpresasComponent implements OnInit {
       console.log(res);
     })
   }
-  resetForm(form?:NgForm){
-    if (form){
-      form.reset();
-      this.tutorService.seleccionarTutor = new Tutor();
-      this.getTutores();
-  }
-}
+
 editTutor(tutor: Tutor){
   this.tutorService.seleccionarTutor = tutor;
 
