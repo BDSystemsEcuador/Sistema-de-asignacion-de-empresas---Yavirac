@@ -56,7 +56,7 @@
 
         </table>
         <div *ngIf="empresaService.empresas.length > 6">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            <pagination-controls align="center" (pageChange)="p = $event"></pagination-controls>
         </div>
         
         <ng-template #longContent let-modal>

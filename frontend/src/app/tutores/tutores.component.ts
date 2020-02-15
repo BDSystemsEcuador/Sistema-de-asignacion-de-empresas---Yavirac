@@ -80,7 +80,7 @@ export class TutoresComponent implements OnInit {
       });
       let timerInterval
       Swal.fire({
-        title: 'Guardando...',
+        title: 'Agregando...',
 
         timer: 1000,
         timerProgressBar: true,

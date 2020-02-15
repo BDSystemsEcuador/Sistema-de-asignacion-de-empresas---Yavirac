@@ -66,6 +66,7 @@ editEstudiante(estudiante: Estudiante){
   this.estudianteService.seleccionarEstudiante = estudiante;
 
 }
+
 deleteEstudiante(estudiante: Estudiante){
   if(confirm('seguro deseas eliminarlo?')){
     this.estudianteService.deleteEstudiante(estudiante)

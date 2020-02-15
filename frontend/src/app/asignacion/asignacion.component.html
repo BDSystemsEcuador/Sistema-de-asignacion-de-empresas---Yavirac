@@ -21,7 +21,7 @@
                         </tr>
                     </thead>
         
-                    <tr *ngFor="let estudiante of estudianteService.estudiantes.slice().reverse() | paginate: { itemsPerPage: 4, currentPage: p1, id: 'first' }">
+                    <tr *ngFor="let estudiante of estudianteService.estudiantes.slice().reverse() | paginate: { itemsPerPage: 6, currentPage: p1, id: 'first' }">
                         <td *ngIf="estudiante.empresa == 'Sin empresa'">{{estudiante.names}}</td>
                         <td *ngIf="estudiante.empresa == 'Sin empresa'">{{estudiante.semestre}}</td>
                         <td *ngIf="estudiante.empresa == 'Sin empresa'">{{estudiante.empresa}}</td>
@@ -34,7 +34,6 @@
                     </tr>
 
                 </table>
-                <pagination-controls (pageChange)="p1 = $event" id="first"></pagination-controls>
 
             </div>
         </div>
@@ -48,29 +47,30 @@
         
                     <thead>
                         <tr>
-                            <th>#</th>
+                         
                             <th>Apellidos y Nombres</th>
                             <th>Nivel</th>
                             <th>Empresa</th>
                             <th>Cambiar empresa</th>
                         </tr>
                     </thead>
-                    <tr *ngFor="let estudiante of estudianteService.estudiantes.slice().reverse() | paginate: { itemsPerPage: 4, currentPage: p2, id: 'second' }; let i = index">
-                        <td *ngIf="estudiante.empresa != 'Sin empresa'">{{i+1}}</td>
-                        <td *ngIf="estudiante.empresa != 'Sin empresa'">{{estudiante.names}}</td>
-                        <td *ngIf="estudiante.empresa != 'Sin empresa'">{{estudiante.semestre}}</td>
-                        <td *ngIf="estudiante.empresa != 'Sin empresa'">{{estudiante.empresa}}</td>
-                        <td *ngIf="estudiante.empresa != 'Sin empresa'"><button class="btn btn-success" type="submit"
-                                (click)="editEstudiante(estudiante);openScrollableContent(longContent)">
-                                <i class="small material-icons">
-                                    edit
-                                </i>
-                            </button></td>
+                    <tr *ngFor="let estudiante of estudianteService.estudiantes.slice().reverse() | paginate: { itemsPerPage: 6, currentPage: p1, id: 'first' }; let i = index">
+                        <ng-container *ngIf="estudiante.empresa != 'Sin empresa'">
+                            <td>{{estudiante.names}}</td>
+                            <td>{{estudiante.semestre}}</td>
+                            <td>{{estudiante.empresa}}</td>
+                            <td><button class="btn btn-success" type="submit"
+                                    (click)="editEstudiante(estudiante);openScrollableContent(longContent)">
+                                    <i class="small material-icons">
+                                        edit
+                                    </i>
+                                </button></td>
+
+                        </ng-container>
+
                     </tr>
 
                 </table>
-                <pagination-controls (pageChange)="p2 = $event" id="second"></pagination-controls>
-
                 <ng-template #longContent let-modal>
                     <div class="modal-header">
                         <h4 class="form-control" type="text" class="modal-title">Ubicación del Estudiante: 
@@ -163,7 +163,7 @@
         
                             <select class="browser-default custom-select" name="empresa" #empresa="ngModel"
                                 [(ngModel)]="estudianteService.seleccionarEstudiante.empresa">
-        
+                                <option value="Sin empresa">Sin empresa</option>
                                 <ng-container *ngFor="let empresa of empresaService.empresas">
                                     <option *ngIf="empresa.ubicacion == estudianteService.seleccionarEstudiante.ubicacion"
                                         value={{empresa.name}}>
@@ -183,7 +183,8 @@
             </div>
         </div>
     </div>
-    
+    <pagination-controls align="center" (pageChange)="p1 = $event" id="first"></pagination-controls>
+
 
     
 
