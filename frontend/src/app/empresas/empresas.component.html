@@ -105,12 +105,12 @@
                             required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="celular" #celular="ngModel"
+                        <input type="text" maxlength="10" class="form-control" name="celular" #celular="ngModel"
                             [(ngModel)]="empresaService.seleccionarEmpresa.celular" placeholder="Ingrese el número celular" required>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" name="telefono" #telefono="ngModel"
+                        <input type="text" maxlength="7" class="form-control" name="telefono" #telefono="ngModel"
                             [(ngModel)]="empresaService.seleccionarEmpresa.telefono" placeholder="Ingrese el teléfono convencional"
                             required>
                     </div>

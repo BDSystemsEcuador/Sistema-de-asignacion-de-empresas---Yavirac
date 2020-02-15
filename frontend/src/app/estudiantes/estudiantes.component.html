@@ -139,19 +139,26 @@
                         </div>
 
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="correo" #correo="ngModel"
-                            [(ngModel)]="estudianteService.seleccionarEstudiante.correo"
-                            placeholder="Ingrese el correo electrónico" required>
+
+                    <label for="inlineFormInputGroupUsername">Ingrese el correo institucional</label>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+                        name="correo" #correo="ngModel"
+                        [(ngModel)]="estudianteService.seleccionarEstudiante.correo" placeholder="correo ejemplo: bdl.delgado">
+
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">@yavirac.edu.ec</div>
+                        </div>
                     </div>
+
                     <div class="form-group">
-                        <input type="text" class="form-control" name="celular" #celular="ngModel"
+                        <input type="text" maxlength="10" class="form-control" name="celular" #celular="ngModel"
                             [(ngModel)]="estudianteService.seleccionarEstudiante.celular" placeholder="Ingrese el número celular"
                             required>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" name="telefono" #telefono="ngModel"
+                        <input type="text" maxlength="7" class="form-control" name="telefono" #telefono="ngModel"
                             [(ngModel)]="estudianteService.seleccionarEstudiante.telefono"
                             placeholder="Ingrese el teléfono convencional" required>
                     </div>

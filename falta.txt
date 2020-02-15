@@ -6,14 +6,15 @@ Relacion entre empresa y tutor no existe
 Cambiar el alert de eliminar
 Pagina Inicial
 Paginación en tablas
-________________________________________________________________________________________________________________________________________
+Corregir Faltas Ortográficas
+boton aumentar siempre visibles__
+Corregir Placeholders ingrese agregue 
+_________________________________________________________________________________________________________________
 Por hacer
 
 Seguridades en el servidor
-Corregir Faltas Ortográficas
-Titulos y boton aumentar siempre visibles
+Titulos y 
 Footer
-Corregir Placeholders ingrese agregue 
 No hay campos obligatorios
 Falta indicacion para agregar sector en el modal
 Cambiar titulo de asignacion de empresas

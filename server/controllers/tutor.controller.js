@@ -16,7 +16,7 @@ tutorCtrl.putTutor= async (req,res, nexts)=>{
         apellidos:req.body.apellidos,
         direccion: req.body.direccion,
         ubicacion: req.body.ubicacion,
-        correo: req.body.correo,
+        correo: req.body.correo +'@yavirac.edu.ec',
         celular:req.body.celular,
         telefono:req.body.telefono
     }
@@ -31,7 +31,7 @@ tutorCtrl.createTutor = async (req,res)=>{
             apellidos:req.body.apellidos,
             direccion: req.body.direccion,
             ubicacion: req.body.ubicacion,
-            correo: req.body.correo,
+            correo: req.body.correo+'@yavirac.edu.ec',
             celular:req.body.celular,
             telefono:req.body.telefono
 
