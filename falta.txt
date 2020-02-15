@@ -1,0 +1,21 @@
+
+Hecho________________________________________________________________________________________________________________________________________
+
+No asigna estudiantes a empresas
+Relacion entre empresa y tutor no existe
+Cambiar el alert de eliminar
+Pagina Inicial
+Paginación en tablas
+________________________________________________________________________________________________________________________________________
+Por hacer
+
+Seguridades en el servidor
+Corregir Faltas Ortográficas
+Titulos y boton aumentar siempre visibles
+Footer
+Corregir Placeholders ingrese agregue 
+No hay campos obligatorios
+Falta indicacion para agregar sector en el modal
+Cambiar titulo de asignacion de empresas
+Falta algoritmo de distancia entre dos partes en coordenadas geograficas para establecer la cercania
+Pasantes requeridos
