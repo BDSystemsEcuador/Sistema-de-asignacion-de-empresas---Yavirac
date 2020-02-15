@@ -1,6 +1,11 @@
 
     <div class="card border-light mb-3">
-        <div class="card-header"><h1>Tutores Empresariales</h1>
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-9"><h1>Tutores Empresariales</h1></div>
+                <div class="col-sm-3 "><button class="btn btn-primary mb-2 mr-2" (click)="openScrollableContent(longContent);resetForm(form)">Agregar +</button>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <table *ngIf="tutorService.tutores != 0" class="table scrollawble">
@@ -19,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let tutor of tutorService.tutores">
+                    <tr *ngFor="let tutor of tutorService.tutores.slice().reverse() | paginate: { itemsPerPage: 6, currentPage: p }">
                         <td>{{tutor.name}}</td>
                         <td>{{tutor.apellidos}}</td>
                         <td>{{tutor.direccion}}</td>
@@ -45,12 +50,17 @@
                     </tr>
                 </tbody>
             </table>
-        
+            <div *ngIf="tutorService.tutores.length > 6">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+           
+
         
             <ng-template #longContent let-modal>
                 <div class="modal-header">
                     <h4 class="modal-title">Agregar Tutor</h4>
-                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click');getTutores()">
+
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click');cancelar(tutorForm);getTutores()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -111,12 +121,11 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click');getTutores()">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click');cancelar(tutorForm);getTutores()">Cancelar</button>
                     <button type="submit" class="btn btn-primary" (click)="addTutor(tutorForm);modal.close('Close click')">Guardar</button>
                 </div>
             </ng-template>
         
-            <button class="btn btn-primary mb-2 mr-2" (click)="openScrollableContent(longContent);resetForm(form)">Agregar +</button>
         
 
         </div>

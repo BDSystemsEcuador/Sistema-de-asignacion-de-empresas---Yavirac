@@ -5,17 +5,21 @@ import { Estudiante } from '../models/estudiante';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {EmpresaService} from '../empresas/empresa.service';
 import { Empresa } from '../models/empresa';
+import Swal from 'sweetalert2';
+
+
 @Component({
   selector: 'app-estudiantes',
   templateUrl: './estudiantes.component.html',
-  styleUrls: ['./estudiantes.component.css'],
+  styleUrls: ['./estudiantes.component.scss'],
   providers:[EstudianteService, EmpresaService]
 })
 export class EstudiantesComponent implements OnInit {
   
+  p: number = 1;
   closeResult: string;
   constructor(private empresaService:EmpresaService,private estudianteService:EstudianteService,private modalService: NgbModal) { }
-
+  
   ngOnInit() {
     this.getEstudiantes();
     this.getEmpresas();
@@ -28,6 +32,7 @@ export class EstudiantesComponent implements OnInit {
     })
   }
   openScrollableContent(longContent) {
+    
     this.modalService.open(longContent, { scrollable: true });
   }
   addEstudiante(form:NgForm){
@@ -53,6 +58,10 @@ export class EstudiantesComponent implements OnInit {
       console.log(res);
     })
   }
+  cancelar(form:NgForm){
+    this.resetForm(form);
+        this.getEstudiantes();
+  }
   resetForm(form?:NgForm){
     if (form){
       form.reset();
@@ -60,17 +69,34 @@ export class EstudiantesComponent implements OnInit {
       this.getEstudiantes();
   }
 }
+
 editEstudiante(estudiante: Estudiante){
   this.estudianteService.seleccionarEstudiante = estudiante;
 
 }
 deleteEstudiante(estudiante: Estudiante){
-  if(confirm('seguro deseas eliminarlo?')){
-    this.estudianteService.deleteEstudiante(estudiante)
+ 
+  Swal.fire({
+    title: 'Eliminar Estudiante',
+    text:'¿Estás seguro?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Eliminar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.value) {
+      this.estudianteService.deleteEstudiante(estudiante)
       .subscribe(res => {
         this.getEstudiantes();
       });
-  }
-
+      Swal.fire(
+        'Eliminado',
+        '',
+        'success'
+      )
+    }
+  })
 }
 }

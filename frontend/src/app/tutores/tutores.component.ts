@@ -4,6 +4,7 @@ import {TutorService} from './tutor.service';
 import { NgForm } from '@angular/forms';
 import { Tutor } from 'src/app/models/tutor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 })
 export class TutoresComponent implements OnInit {
+  p: number = 1;
 
   closeResult: string;
   constructor(private tutorService:TutorService,private modalService: NgbModal) { }
@@ -60,13 +62,34 @@ editTutor(tutor: Tutor){
   this.tutorService.seleccionarTutor = tutor;
 
 }
+cancelar(form:NgForm){
+  this.resetForm(form);
+      this.getTutores();
+}
 deleteTutor(tutor: Tutor){
-  if(confirm('seguro deseas eliminarlo?')){
-    this.tutorService.deleteTutor(tutor)
+  Swal.fire({
+    title: 'Eliminar Tutor',
+    text:'¿Estás seguro?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Eliminar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.value) {
+      this.tutorService.deleteTutor(tutor)
       .subscribe(res => {
         this.getTutores();
       });
-  }
+      Swal.fire(
+        'Eliminado',
+        '',
+        'success'
+      )
+    }
+  })
+
 
 }
 

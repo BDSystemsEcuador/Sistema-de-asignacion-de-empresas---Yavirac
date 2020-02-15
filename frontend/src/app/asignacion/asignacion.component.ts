@@ -14,6 +14,7 @@ import { Empresa } from '../models/empresa';
 })
 export class AsignacionComponent implements OnInit {
   closeResult: string;
+  p: number[] = [];
 
   constructor(private empresaService:EmpresaService,private estudianteService:EstudianteService,private modalService: NgbModal) { }
   ngOnInit() {

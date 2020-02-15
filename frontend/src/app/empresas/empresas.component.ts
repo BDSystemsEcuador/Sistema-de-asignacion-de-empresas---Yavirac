@@ -5,6 +5,7 @@ import { Empresa } from '../models/empresa';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {TutorService} from '../tutores/tutor.service';
 import { Tutor } from '../models/tutor';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-empresas',
@@ -14,6 +15,8 @@ import { Tutor } from '../models/tutor';
 })
 
 export class EmpresasComponent implements OnInit {
+  p: number = 1;
+
   closeResult: string;
   constructor(private empresaService:EmpresaService, private tutorService:TutorService, private modalService: NgbModal) { }
 
@@ -61,6 +64,7 @@ deleteTutor(tutor: Tutor){
       });
   }
 
+  
 }
 
   addEmpresa(form:NgForm){
@@ -86,6 +90,10 @@ deleteTutor(tutor: Tutor){
       console.log(res);
     })
   }
+  cancelar(form:NgForm){
+    this.resetForm(form);
+        this.getEmpresas();
+  }
   resetForm(form?:NgForm){
     if (form){
       form.reset();
@@ -97,13 +105,31 @@ editEmpresa(empresa: Empresa){
   this.empresaService.seleccionarEmpresa = empresa;
 
 }
+
 deleteEmpresa(empresa: Empresa){
-  if(confirm('seguro deseas eliminarlo?')){
-    this.empresaService.deleteEmpresa(empresa)
+  Swal.fire({
+    title: 'Eliminar Empresa',
+    text:'¿Estás seguro?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Eliminar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.value) {
+      this.empresaService.deleteEmpresa(empresa)
       .subscribe(res => {
         this.getEmpresas();
       });
-  }
+      Swal.fire(
+        'Eliminado',
+        '',
+        'success'
+      )
+    }
+  })
 
 }
 }
+

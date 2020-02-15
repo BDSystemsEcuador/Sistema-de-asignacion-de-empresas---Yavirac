@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
@@ -15,6 +15,10 @@ import { LoginComponent } from './login/login.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { EstudiantesComponent } from "../app/estudiantes/estudiantes.component";
 import { FooterComponent } from './footer/footer.component';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { DataTablesModule } from 'angular-datatables';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,10 +39,13 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule,
+    MDBBootstrapModule.forRoot(),
+    DataTablesModule
   ],
   providers: [],
-  bootstrap: [AppComponent,]
+  bootstrap: [AppComponent,],
+  schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class AppModule { }
