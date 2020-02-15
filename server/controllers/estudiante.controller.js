@@ -17,7 +17,7 @@ estudianteCtrl.putEstudiante= async (req,res, nexts)=>{
         direccion: req.body.direccion,
         ubicacion: req.body.ubicacion,
         semestre: req.body.semestre,
-        correo: req.body.correo +'@yavirac.edu.ec',
+        correo: req.body.correo,
         celular:req.body.celular,
         telefono:req.body.telefono,
         empresa:req.body.empresa

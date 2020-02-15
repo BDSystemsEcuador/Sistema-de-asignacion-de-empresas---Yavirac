@@ -16,7 +16,7 @@ tutorCtrl.putTutor= async (req,res, nexts)=>{
         apellidos:req.body.apellidos,
         direccion: req.body.direccion,
         ubicacion: req.body.ubicacion,
-        correo: req.body.correo +'@yavirac.edu.ec',
+        correo: req.body.correo,
         celular:req.body.celular,
         telefono:req.body.telefono
     }

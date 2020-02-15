@@ -71,9 +71,7 @@
                 </table>
                 <ng-template #longContent let-modal>
                     <div class="modal-header">
-                        <h4 class="form-control" type="text" class="modal-title">Sector del Estudiante: 
-                            {{estudianteService.seleccionarEstudiante.ubicacion}}</h4>
-                        <br>
+                        <h4>Asignar Empresa</h4>
         
                         <button type="button" class="close" aria-label="Close"
                             (click)="modal.dismiss('Cross click');getEstudiantes()">
@@ -81,15 +79,19 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <p><b>{{estudianteService.seleccionarEstudiante.apellidos}} {{estudianteService.seleccionarEstudiante.names}}</b>
+                            <br><b>Nivel: </b>{{estudianteService.seleccionarEstudiante.semestre}}<br>
+                        <b>Dirección: </b>
+                            {{estudianteService.seleccionarEstudiante.direccion}} - {{estudianteService.seleccionarEstudiante.ubicacion}}</p>
+
                         <form #estudianteForm="ngForm" (ngSubmit)="addEstudiante(estudianteForm)">
-                            <p>Las empresas cercanas al estudiante son:</p>
-                            <input type="hidden" name="_id" #_id="ngModel"
-                                [(ngModel)]="estudianteService.seleccionarEstudiante._id">
                             <div class="form-group">
                                 <input class="form-control" type="hidden" name="names" #name="ngModel"
                                     [(ngModel)]="estudianteService.seleccionarEstudiante.names"
                                     placeholder="ingresa sus nombres">
                             </div>
+                            <input type="hidden" name="_id" #_id="ngModel"
+                                [(ngModel)]="estudianteService.seleccionarEstudiante._id">
                             <div class="form-group">
                                 <input class="form-control" type="hidden" name="apellidos" #apellidos="ngModel"
                                     [(ngModel)]="estudianteService.seleccionarEstudiante.apellidos"
@@ -158,7 +160,7 @@
                                     [(ngModel)]="estudianteService.seleccionarEstudiante.telefono"
                                     placeholder="Teléfono Convencional" required>
                             </div>
-        
+                            <label for="empresa">Las empresas que se encuetran en el {{estudianteService.seleccionarEstudiante.ubicacion}} son:</label>
                             <select class="browser-default custom-select" name="empresa" #empresa="ngModel"
                                 [(ngModel)]="estudianteService.seleccionarEstudiante.empresa">
                                 <option value="Sin empresa">Sin empresa</option>
