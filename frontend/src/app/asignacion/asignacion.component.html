@@ -1,28 +1,27 @@
 <div class="card border-light mb-3">
     <div class="card-header">
-        <h1>Asignación de Empresas</h1>
+        <h2>Asignación de empresas a estudiantes</h2>
     </div>
     <div class="row">
         <div class="col-sm-6">
             <div class="card-body">
                 <div class="card-header">
-                    <H3>Estudiantes sin Empresa:</H3>
+                    <H5>Estudiantes sin Empresa:</H5>
         
                 </div>
-                <table class="table table-striped" style="width: 100%;
-                height: 350px;">
+                <table class="table table-striped" style="width: 100%">
         
                     <thead>
                         <tr>
                             <th>Apellidos y Nombres</th>
-                            <th>Semestre</th>
+                            <th>Nivel</th>
                             <th>Empresa</th>
-        
+                            <th>Asignar</th>
                         </tr>
                     </thead>
         
                     <tr *ngFor="let estudiante of estudianteService.estudiantes.slice().reverse() | paginate: { itemsPerPage: 6, currentPage: p1, id: 'first' }">
-                        <td *ngIf="estudiante.empresa == 'Sin empresa'">{{estudiante.names}}</td>
+                        <td *ngIf="estudiante.empresa == 'Sin empresa'">{{estudiante.apellidos}} {{estudiante.names}}</td>
                         <td *ngIf="estudiante.empresa == 'Sin empresa'">{{estudiante.semestre}}</td>
                         <td *ngIf="estudiante.empresa == 'Sin empresa'">{{estudiante.empresa}}</td>
                         <td *ngIf="estudiante.empresa == 'Sin empresa'"><button class="btn btn-success" type="submit"
@@ -40,10 +39,9 @@
         <div class="col-sm-6">
             <div class="card-body">
                 <div class="card-header">
-                    <H3>Estudiantes asignados</H3>
+                    <H5>Estudiantes asignados</H5>
                 </div>
-                <table class="table table-striped " style="width: 100%;
-                height: 350px;" >
+                <table class="table " style="width: 100%;" >
         
                     <thead>
                         <tr>
@@ -51,12 +49,12 @@
                             <th>Apellidos y Nombres</th>
                             <th>Nivel</th>
                             <th>Empresa</th>
-                            <th>Cambiar empresa</th>
+                            <th>Editar</th>
                         </tr>
                     </thead>
                     <tr *ngFor="let estudiante of estudianteService.estudiantes.slice().reverse() | paginate: { itemsPerPage: 6, currentPage: p1, id: 'first' }; let i = index">
                         <ng-container *ngIf="estudiante.empresa != 'Sin empresa'">
-                            <td>{{estudiante.names}}</td>
+                            <td>{{estudiante.apellidos}} {{estudiante.names}}</td>
                             <td>{{estudiante.semestre}}</td>
                             <td>{{estudiante.empresa}}</td>
                             <td><button class="btn btn-success" type="submit"
@@ -73,7 +71,7 @@
                 </table>
                 <ng-template #longContent let-modal>
                     <div class="modal-header">
-                        <h4 class="form-control" type="text" class="modal-title">Ubicación del Estudiante: 
+                        <h4 class="form-control" type="text" class="modal-title">Sector del Estudiante: 
                             {{estudianteService.seleccionarEstudiante.ubicacion}}</h4>
                         <br>
         
@@ -183,7 +181,9 @@
             </div>
         </div>
     </div>
-    <pagination-controls align="center" (pageChange)="p1 = $event" id="first"></pagination-controls>
+    <div align="center">
+        <pagination-controls (pageChange)="p1 = $event" id="first"></pagination-controls>
+    </div>
 
 
     

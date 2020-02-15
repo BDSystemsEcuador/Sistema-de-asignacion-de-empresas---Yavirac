@@ -11,21 +11,21 @@
             <table *ngIf="tutorService.tutores != 0" class="table scrollawble">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Nombres</th>
                         <th scope="col">Apellidos</th>
-                        <th scope="col">Direccion</th>
-                        <th scope="col">Ubicacion</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Sector</th>
                         <th scope="col">Correo</th>
                         <th scope="col">Celular</th>
-                        <th scope="col">Telèfono</th>
+                        <th scope="col">Teléfono</th>
                         <th scope="col"></th>
                         <th  scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let tutor of tutorService.tutores.slice().reverse() | paginate: { itemsPerPage: 6, currentPage: p }">
-                        <td>{{tutor.name}}</td>
                         <td>{{tutor.apellidos}}</td>
+                        <td>{{tutor.name}}</td>
                         <td>{{tutor.direccion}}</td>
                         <td>{{tutor.ubicacion}}</td>
                         <td>{{tutor.correo}}</td>
@@ -49,7 +49,9 @@
                 </tbody>
             </table>
             <div *ngIf="tutorService.tutores.length > 6">
-                <pagination-controls align="center" (pageChange)="p = $event"></pagination-controls>
+                <div align="center">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
             </div>
            
 
@@ -66,24 +68,26 @@
                     <form #tutorForm="ngForm" (ngSubmit)="addTutor(tutorForm)" >
                         <input type="hidden" name="_id" #_id="ngModel"
                             [(ngModel)]="tutorService.seleccionarTutor._id">
-                        <div class="form-group">
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="apellidos" #apellidos="ngModel"
+                                    [(ngModel)]="tutorService.seleccionarTutor.apellidos"
+                                    placeholder="Ingrese los apellidos">
+                            </div>
+                            <div class="form-group">
                             <input class="form-control" type="text" name="name" #name="ngModel"
                                 [(ngModel)]="tutorService.seleccionarTutor.name"
-                                placeholder="ingresa nombres">
+                                placeholder="Ingrese los nombres">
                         </div>
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="apellidos" #apellidos="ngModel"
-                                [(ngModel)]="tutorService.seleccionarTutor.apellidos"
-                                placeholder="ingresa apellidos">
-                        </div>
+
         
                         <div class="form-group">
                             <input class="form-control" type="text" name="direccion" #direccion="ngModel"
                                 [(ngModel)]="tutorService.seleccionarTutor.direccion"
-                                placeholder="ingresa direccion">
+                                placeholder="Ingrese la direccion">
                         </div>
         
                         <div class="form-group">
+                            <label for="ubicacion">Seleccione el sector:</label>
                             <div>
                                 <input type="radio" name="ubicacion" #ubicacion="ngModel"
                                     [(ngModel)]="tutorService.seleccionarTutor.ubicacion" value="Centro"
@@ -102,18 +106,18 @@
                         <div class="form-group">
                             <input type="text" class="form-control" name="correo" #correo="ngModel"
                                 [(ngModel)]="tutorService.seleccionarTutor.correo"
-                                placeholder="Correo Electrónico" required>
+                                placeholder="Ingrese el correo institucional" required>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="celular" #celular="ngModel"
-                                [(ngModel)]="tutorService.seleccionarTutor.celular" placeholder="Celular"
+                                [(ngModel)]="tutorService.seleccionarTutor.celular" placeholder="Ingrese el número celular"
                                 required>
                         </div>
         
                         <div class="form-group">
                             <input type="text" class="form-control" name="telefono" #telefono="ngModel"
                                 [(ngModel)]="tutorService.seleccionarTutor.telefono"
-                                placeholder="Teléfono Convencional" required>
+                                placeholder="Ingrese el teléfono convencional" required>
                         </div>
                         
                     </form>
