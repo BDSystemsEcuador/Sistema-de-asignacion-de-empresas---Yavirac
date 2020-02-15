@@ -3,6 +3,7 @@ const {Schema} = mongoose;
 
 const tutorSchema = new Schema ({
     name:{type: String, required:true},
+    apellidos:{type: String, required:true},
     direccion:{type: String, required:false},
     ubicacion:{type: String, required:false},
     correo:{type: String, required:false},

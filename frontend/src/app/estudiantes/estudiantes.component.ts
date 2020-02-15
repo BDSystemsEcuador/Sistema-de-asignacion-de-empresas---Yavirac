@@ -43,6 +43,35 @@ export class EstudiantesComponent implements OnInit {
         this.resetForm(form);
         this.getEstudiantes();
       }); 
+      
+      let timerInterval
+      Swal.fire({
+        title: 'Editando...',
+        timer: 1000,
+        timerProgressBar: true,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+          timerInterval = setInterval(() => {
+            const content = Swal.getContent()
+            if (content) {
+              const b = content.querySelector('b')
+              if (b) {
+                b.querySelector('strong')
+                .textContent = Swal.getTimerLeft().toString()
+              }
+            }
+          }, 100)
+        },
+        onClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
+      })
+      
     } else {
       this.estudianteService.addEstudiante(form.value).
       subscribe(res => {
@@ -50,6 +79,33 @@ export class EstudiantesComponent implements OnInit {
         this.getEstudiantes();
       });
     }
+    let timerInterval
+    Swal.fire({
+      title: 'Guardando...',
+      timer: 1000,
+      timerProgressBar: true,
+      onBeforeOpen: () => {
+        Swal.showLoading()
+        timerInterval = setInterval(() => {
+          const content = Swal.getContent()
+          if (content) {
+            const b = content.querySelector('b')
+            if (b) {
+              b.querySelector('strong')
+              .textContent = Swal.getTimerLeft().toString()
+            }
+          }
+        }, 100)
+      },
+      onClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+      }
+    })
   }
   getEstudiantes(){
     this.estudianteService.getEstudiantes().

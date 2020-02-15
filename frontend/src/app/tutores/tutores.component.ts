@@ -31,17 +31,81 @@ export class TutoresComponent implements OnInit {
   addTutor(form:NgForm){
 
     if(form.value._id){
+
+      let timerInterval
+      Swal.fire({
+        title: 'Editando...',
+        timer: 1000,
+        timerProgressBar: true,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+          timerInterval = setInterval(() => {
+            const content = Swal.getContent()
+            if (content) {
+              const b = content.querySelector('b')
+              if (b) {
+                b.querySelector('strong')
+                .textContent = Swal.getTimerLeft().toString()
+              }
+            }
+          }, 100)
+        },
+        onClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
+      })
+      
       this.tutorService.putTutor(form.value).
       subscribe (res => {
         this.resetForm(form);
         this.getTutores();
-      }); 
+        
+      }
+    ); 
+
+
+      
     } else {
+      
       this.tutorService.addTutor(form.value).
       subscribe(res => {
+        
         this.resetForm(form);
         this.getTutores();
       });
+      let timerInterval
+      Swal.fire({
+        title: 'Guardando...',
+
+        timer: 1000,
+        timerProgressBar: true,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+          timerInterval = setInterval(() => {
+            const content = Swal.getContent()
+            if (content) {
+              const b = content.querySelector('b')
+              if (b) {
+                b.querySelector('strong')
+                .textContent = Swal.getTimerLeft().toString()
+              }
+            }
+          }, 100)
+        },
+        onClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
+      })
     }
   }
   getTutores(){

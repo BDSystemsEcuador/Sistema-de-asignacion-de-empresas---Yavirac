@@ -6,7 +6,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {TutorService} from '../tutores/tutor.service';
 import { Tutor } from '../models/tutor';
 import Swal from 'sweetalert2';
-
 @Component({
   selector: 'app-empresas',
   templateUrl: './empresas.component.html',
@@ -75,6 +74,33 @@ deleteTutor(tutor: Tutor){
         this.resetForm(form);
         this.getEmpresas();
       }); 
+      let timerInterval
+      Swal.fire({
+        title: 'Editando...',
+        timer: 1000,
+        timerProgressBar: true,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+          timerInterval = setInterval(() => {
+            const content = Swal.getContent()
+            if (content) {
+              const b = content.querySelector('b')
+              if (b) {
+                b.querySelector('strong')
+                .textContent = Swal.getTimerLeft().toString()
+              }
+            }
+          }, 100)
+        },
+        onClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
+      })
     } else {
       this.empresaService.addEmpresa(form.value).
       subscribe(res => {
@@ -82,6 +108,33 @@ deleteTutor(tutor: Tutor){
         this.getEmpresas();
       });
     }
+    let timerInterval
+    Swal.fire({
+      title: 'Editando...',
+      timer: 1000,
+      timerProgressBar: true,
+      onBeforeOpen: () => {
+        Swal.showLoading()
+        timerInterval = setInterval(() => {
+          const content = Swal.getContent()
+          if (content) {
+            const b = content.querySelector('b')
+            if (b) {
+              b.querySelector('strong')
+              .textContent = Swal.getTimerLeft().toString()
+            }
+          }
+        }, 100)
+      },
+      onClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+      }
+    })
   }
   getEmpresas(){
     this.empresaService.getEmpresas().

@@ -13,6 +13,7 @@ tutorCtrl.getTutor= async (req,res)=>{
 tutorCtrl.putTutor= async (req,res, nexts)=>{
     const tutor = await{
         name:req.body.name,
+        apellidos:req.body.apellidos,
         direccion: req.body.direccion,
         ubicacion: req.body.ubicacion,
         correo: req.body.correo,
@@ -27,6 +28,7 @@ tutorCtrl.createTutor = async (req,res)=>{
     const tutor= await new Tutor(
         {
             name:req.body.name,
+            apellidos:req.body.apellidos,
             direccion: req.body.direccion,
             ubicacion: req.body.ubicacion,
             correo: req.body.correo,
